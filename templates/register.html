@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="post" class="card card-body shadow-sm">
+
+            <h4 class="mb-3">创建新账号</h4>
+
+            <label class="form-label">用户名</label>
+            <input type="text" name="username" minlength="3"
+                   class="form-control" required>
+
+            <label class="form-label mt-3">密码</label>
+            <input type="password" name="password" minlength="6"
+                   class="form-control" required>
+
+            <button type="submit" class="btn btn-success mt-3">
+                注册
+            </button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

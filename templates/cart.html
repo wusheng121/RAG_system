@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block content %}
+
+<h3>购物车</h3>
+
+{% if cart_items %}
+<table class="table table-bordered bg-white shadow-sm">
+  <thead>
+    <tr>
+      <th>书名</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>小计</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart_items %}
+    <tr>
+      <td>{{ item.title }}</td>
+      <td>￥{{ item.price }}</td>
+      <td>{{ item.qty }}</td>
+      <td>￥{{ '%.2f'|format(item.price * item.qty) }}</td>
+      <td>
+        <button class="btn btn-sm btn-danger" onclick="removeFromCart({{ loop.index0 }})">移除</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="/checkout" class="btn btn-primary"> 去结账 </a>
+{% else %}
+<div class="alert alert-info">
+  您的购物车是空的。
+</div>
+{% endif %}
+
+<script>
+async function removeFromCart(index) {
+    try {
+        const response = await fetch(`/cart/${index}`, { method: 'DELETE' });
+        if (response.ok) {
+            location.reload(); // 刷新页面
+        } else {
+            alert('移除失败');
+        }
+    } catch (error) {
+        alert('错误: ' + error.message);
+    }
+}
+</script>
+
+{% endblock %}

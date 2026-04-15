@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+openai
+faiss-cpu
+numpy
+jieba
+sentence-transformers
+rank_bm25
+python-multipart
+pydantic
+sqlalchemy
+passlib[argon2]
+python-jose[cryptography]
+jinja2
+pytest

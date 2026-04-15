@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4>{{ book.title }}</h4>
+        <p>作者：{{ book.author }}</p>
+        <p>ISBN：{{ book.isbn }}</p>
+        <p>价格：￥{{ book.price }}</p>
+        <p>库存：{{ book.stock }}</p>
+
+        <form method="post" action="/add/{{ book.id }}">
+            <button type="submit" class="btn btn-success">
+                加入购物车
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

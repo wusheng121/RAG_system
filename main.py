@@ -1,8 +1,12 @@
 # main.py
-import os
-from llm import generate, expand_query
-from retriever import hybrid_retrieve
-from rerank import rerank
+from llm import LLM
+from retriever import Retriever
+from rerank import Reranker
+
+# Initialize components
+llm = LLM()
+retriever = Retriever()
+reranker = Reranker()
 
 def ask(query):
     """
@@ -14,18 +18,18 @@ def ask(query):
     """
     try:
         # 1️⃣ 扩展 query
-        queries = expand_query(query)
+        queries = llm.expand_query(query)
         all_docs = []
 
         for q in queries:
-            docs = hybrid_retrieve(q)
+            docs = retriever.hybrid_retrieve(q)
             all_docs.extend(docs)
 
         # 去重
         all_docs = list(set(all_docs))
 
         # 2️⃣ rerank
-        reranked = rerank(query, all_docs, top_k=3)
+        reranked = reranker.rerank(query, all_docs, top_k=3)
 
         # 3️⃣ 构造上下文
         context = "\n".join(reranked)
@@ -46,7 +50,7 @@ def ask(query):
 """
 
         # 4️⃣ LLM 生成
-        return generate(prompt)
+        return llm.generate(prompt)
 
     except Exception as e:
         return f"系统错误: {str(e)}"

@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE/editor
+.idea/
+.vscode/
+
+# Local runtime folders
+.gradio/
+.pytest_cache/
+
+# Local databases and runtime artifacts
+*.db
+instance/
+
+# OS files
+.DS_Store
+Thumbs.db
+

@@ -2,10 +2,13 @@ import os
 
 
 # 从环境变量读取
-OPENAI_API_KEY = os.getenv("ALI_API_KEY")
-# OPENAI_API_KEY = "sk-c8f56d77ce3345458bdf55f3c3cd2f57"
+ALI_API_KEY = os.getenv("ALI_API_KEY")
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
-# 检查
-if not OPENAI_API_KEY:
-    raise ValueError("请先设置环境变量 OPENAI_API_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key")
+
+# 检查（可选）
+if not ALI_API_KEY:
+    print("警告: 未设置环境变量 ALI_API_KEY。LLM功能将被禁用。")
+if not SECRET_KEY or SECRET_KEY == "your-secret-key":
+    print("警告: 使用默认SECRET_KEY，不安全。")

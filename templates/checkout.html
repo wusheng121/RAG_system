@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <h4>订单结账</h4>
+
+        {% if error %}
+            <div class="alert alert-warning">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if success %}
+            <div class="alert alert-success">
+                订单提交成功！
+            </div>
+        {% else %}
+            <form method="post">
+                <p>请确认订单信息后提交。</p>
+                <button type="submit" class="btn btn-success">
+                    确认提交订单
+                </button>
+            </form>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

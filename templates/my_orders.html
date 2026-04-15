@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="mb-4">我的订单</h3>
+
+{% if orders %}
+<table class="table table-bordered table-hover bg-white shadow-sm">
+    <thead class="table-light">
+        <tr>
+            <th>订单号</th>
+            <th>书名</th>
+            <th>金额（￥）</th>
+            <th>下单时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.order_no }}</td>
+            <td>{{ order.book_title or '未知' }}</td>
+            <td>{{ order.amount if order.amount is not none else '未知' }}</td>
+            <td>{{ order.created_at if order.created_at else '未知' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">
+    你还没有任何订单记录。
+</div>
+{% endif %}
+
+{% endblock %}

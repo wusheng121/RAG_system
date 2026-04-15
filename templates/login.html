@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="post" class="card card-body shadow-sm">
+
+            <h4 class="mb-3">登录 / 自动注册</h4>
+            <p class="text-muted mb-3">已注册用户直接登录，未注册用户将自动创建账号并登录。</p>
+
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <label class="form-label">用户名</label>
+            <input type="text" name="username" class="form-control" required>
+
+            <label class="form-label mt-3">邮箱（首次注册可选）</label>
+            <input type="email" name="email" class="form-control" placeholder="可留空，系统会自动生成">
+
+            <label class="form-label mt-3">密码</label>
+            <input type="password" name="password" class="form-control" required>
+
+            <button type="submit" class="btn btn-primary mt-3">
+                继续
+            </button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
