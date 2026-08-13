@@ -15,10 +15,15 @@ venv/
 # Local runtime folders
 .gradio/
 .pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
 
 # Local databases and runtime artifacts
 *.db
 instance/
+data/cache/
 
 # OS files
 .DS_Store

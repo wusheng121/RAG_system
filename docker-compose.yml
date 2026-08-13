@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=change-me-in-production  # 生产请用真实强密钥
+      - ALI_API_KEY=${ALI_API_KEY:-}
+      - HF_LOCAL_FILES_ONLY=1
+      - ENV=development
+    volumes:
+      - ./data:/app/data  # 知识库 docs.txt 与检索缓存可从宿主维护

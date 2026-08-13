@@ -24,6 +24,7 @@
             <button type="submit" class="btn btn-primary mt-3">
                 继续
             </button>
+            <input type="hidden" name="csrf_token" value="{{ request.state.csrf_token }}" />
 
         </form>
     </div>

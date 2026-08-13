@@ -41,7 +41,7 @@
                         <td>{{ book.title }}</td>
                         <td>{{ book.author }}</td>
                         <td>{{ book.isbn }}</td>
-                        <td>￥{{ book.price }}</td>
+                        <td>{{ book.price | money }}</td>
                         <td>{{ book.stock }}</td>
                         <td>
                             <a href="/book/{{ book.id }}"

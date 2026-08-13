@@ -17,11 +17,11 @@
     {% for item in cart_items %}
     <tr>
       <td>{{ item.title }}</td>
-      <td>￥{{ item.price }}</td>
+      <td>{{ item.price | money }}</td>
       <td>{{ item.qty }}</td>
-      <td>￥{{ '%.2f'|format(item.price * item.qty) }}</td>
+      <td>{{ (item.price * item.qty) | money }}</td>
       <td>
-        <button class="btn btn-sm btn-danger" onclick="removeFromCart({{ loop.index0 }})">移除</button>
+        <button class="btn btn-sm btn-danger" onclick="removeFromCart({{ item.id }})">移除</button>
       </td>
     </tr>
     {% endfor %}
@@ -36,9 +36,13 @@
 {% endif %}
 
 <script>
-async function removeFromCart(index) {
+async function removeFromCart(itemId) {
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     try {
-        const response = await fetch(`/cart/${index}`, { method: 'DELETE' });
+        const response = await fetch(`/cart/${itemId}`, {
+            method: 'DELETE',
+            headers: { 'X-CSRF-Token': token },
+        });
         if (response.ok) {
             location.reload(); // 刷新页面
         } else {

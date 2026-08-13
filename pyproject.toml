@@ -1,0 +1,30 @@
+[project]
+name = "rag-bookstore"
+version = "0.2.0"
+description = "RAG 智能客服 + 线上书店（FastAPI + SQLAlchemy + SQLite）"
+requires-python = ">=3.10,<3.13"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+# 启用一组合理的规则集：基础 + import 顺序 + 简化 + 习惯用法 + bug 风险
+select = ["E", "F", "I", "W", "UP", "B", "C4", "SIM"]
+ignore = [
+    "E501",  # 行长由 format 统一处理
+    "B008",  # FastAPI Depends() 在默认参数中是惯用法
+    "B005",  # .strip() 多字符在此用于字符集剥离（中文标点），属故意识别
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402", "F401"]
+"smoke_test.py" = ["E402"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

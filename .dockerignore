@@ -1,0 +1,13 @@
+# 构建/运行时排除项
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.pytest_cache/
+*.db
+data/cache/
+.env
+_tb*.txt
+_retr.txt

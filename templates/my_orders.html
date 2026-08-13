@@ -9,7 +9,7 @@
         <tr>
             <th>订单号</th>
             <th>书名</th>
-            <th>金额（￥）</th>
+            <th>金额</th>
             <th>下单时间</th>
         </tr>
     </thead>
@@ -18,7 +18,7 @@
         <tr>
             <td>{{ order.order_no }}</td>
             <td>{{ order.book_title or '未知' }}</td>
-            <td>{{ order.amount if order.amount is not none else '未知' }}</td>
+            <td>{{ order.amount | money if order.amount is not none else '未知' }}</td>
             <td>{{ order.created_at if order.created_at else '未知' }}</td>
         </tr>
         {% endfor %}

@@ -1,12 +1,6 @@
 import uvicorn
-import os
-from app import app
 
-# Check for required environment variables
-if not os.getenv("ALI_API_KEY"):
-    print("警告: 未设置环境变量 ALI_API_KEY。LLM功能将被禁用。")
-if not os.getenv("SECRET_KEY") or os.getenv("SECRET_KEY") == "your-secret-key":
-    print("警告: 使用默认SECRET_KEY，不安全。")
+from app import app  # noqa: F401  (import 触发 config.warn())
 
 if __name__ == "__main__":
     try:

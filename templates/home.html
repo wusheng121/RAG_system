@@ -14,7 +14,7 @@
                     作者：{{ book.author }}
                 </p>
                 <p class="fw-bold">
-                    ￥{{ book.price }}
+                    {{ book.price | money }}
                 </p>
             </div>
             <div class="card-footer bg-white">

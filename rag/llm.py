@@ -1,11 +1,12 @@
 from openai import OpenAI
-import os
+
+from core.config import config
+
 
 class LLM:
     def __init__(self):
-        api_key = os.getenv("ALI_API_KEY")
-        if api_key:
-            self.client = OpenAI(api_key=api_key, base_url="https://dashscope.aliyuncs.com/compatible-mode/v1")
+        if config.ALI_API_KEY:
+            self.client = OpenAI(api_key=config.ALI_API_KEY, base_url=config.LLM_BASE_URL)
         else:
             self.client = None
 
@@ -14,8 +15,8 @@ class LLM:
             return "LLM未启用，请设置ALI_API_KEY"
         try:
             response = self.client.chat.completions.create(
-                model="qwen-plus",
-                messages=[{"role": "user", "content": prompt}]
+                model=config.LLM_MODEL,
+                messages=[{"role": "user", "content": prompt}],
             )
             return response.choices[0].message.content
         except Exception as e:
