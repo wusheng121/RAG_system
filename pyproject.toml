@@ -28,3 +28,6 @@ indent-style = "space"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+# 把仓库根加入 sys.path，使 core/models/services/app 等包在用 `pytest`
+# （而非 `python -m pytest`）调用时也可导入，修复 CI 的 ModuleNotFoundError。
+pythonpath = ["."]
