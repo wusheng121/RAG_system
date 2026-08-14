@@ -7,8 +7,9 @@ RUN apt-get update \
 
 WORKDIR /app
 
-# 先装 CPU 版 torch，避免 pip 默认拉取 CUDA 巨型包；再装其余依赖
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+# 先升级 pip 工具链，再装 CPU 版 torch（避免旧 pip 解析构建依赖失败）；再装其余依赖
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
+    && pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
