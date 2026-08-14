@@ -26,10 +26,10 @@ def _reset_db():
         db.execute(text("DELETE FROM orders"))
         db.execute(text("DELETE FROM users"))
         for sample in SAMPLE_BOOKS:
-            book = db.query(Book).filter(Book.title == sample.title).first()
+            book = db.query(Book).filter(Book.title == sample["title"]).first()
             if book:
-                book.stock = sample.stock
-                book.price = sample.price
+                book.stock = sample["stock"]
+                book.price = sample["price"]
         db.commit()
     except Exception:
         db.rollback()
